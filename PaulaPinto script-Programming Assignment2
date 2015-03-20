@@ -1,0 +1,36 @@
+### second programming assignment Paula Pinto 
+
+## Assignment: Caching the Inverse of a Matrix
+
+# Objective:to write a pair of functions that cache the inverse of a matrix.
+##Creates a special "matrix" object that can cache its inverse using funtion "makeCacheMatrix"
+     # `makeCacheMatrix`: This function creates a special "matrix" object
+      #cacheSolve`: This function computes the inverse of the special
+# 
+# 
+makeCacheMatrix <- function(x = matrix()) { # This function creates a special "matrix" object that can cache its inverse.
+  m<-NULL
+  set<-function(y){
+    x<<-y
+    m<<-NULL
+  }
+  get<-function() x
+  setmatrix<-function(solve) m<<- solve
+  getmatrix<-function() m
+  list(set=set, get=get,
+       setmatrix=setmatrix,
+       getmatrix=getmatrix)
+}
+
+cacheSolve <- function(x=matrix(), ...) {  # This function computes the inverse of the special "matrix" returned by `makeCacheMatrix` above.
+  m<-x$getmatrix()
+  if(!is.null(m)){
+    message("getting cached data")         # retrieving the inverse from the cache
+    return(m)
+  }
+  matrix<-x$get ()
+  m<-solve(matrix, ...) # `solve` Computes the inverse of the square matrix 
+  x$setmatrix(m)
+  m
+}
+
